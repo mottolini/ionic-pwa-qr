@@ -9,6 +9,7 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 export class QrPage {
 
   scannedText: string;
+  scanSub: any;
 
   constructor(
     public navCtrl: NavController,
@@ -27,6 +28,11 @@ export class QrPage {
     console.log('Camera View: hidden');
   }
 
+  stopScan() {
+    this.qrScanner.hide(); // hide camera preview
+    this.scanSub.unsubscribe(); // stop scanning
+  }
+
   doScan() {
     // Optionally request the permission early
     console.log('QR: Trying to scan...')
@@ -37,15 +43,13 @@ export class QrPage {
         console.log('QR: Camera Permission Given');
  
         // start scanning
-        let scanSub = this.qrScanner.scan().subscribe((text: any) => {
+        this.scanSub = this.qrScanner.scan().subscribe((text: any) => {
           console.log('QR: Scanned something', text);
           this.scannedText = text.result;
- 
-          this.qrScanner.hide(); // hide camera preview
-          scanSub.unsubscribe(); // stop scanning
+          this.stopScan();
         });
  
-        this.qrScanner.show();
+        //this.qrScanner.show();
         console.log('QR: Scanner scanning');
       } else if (status.denied) {
         // camera permission was permanently denied
@@ -64,6 +68,7 @@ export class QrPage {
 
   ionViewWillLeave() {
     this.hideCamera();
+    this.stopScan();
   }
 
   ionViewDidEnter(){
