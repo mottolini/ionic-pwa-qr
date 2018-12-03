@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Platform, NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +7,10 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
-
+  currentPlaforms: any
+  
+  constructor(public navCtrl: NavController, private platform: Platform) {
+    this.currentPlaforms = platform._platforms;
   }
 
 }

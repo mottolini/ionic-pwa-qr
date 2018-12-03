@@ -1,5 +1,7 @@
 {
   "name": "ionic-pwa-qr",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

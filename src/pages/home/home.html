@@ -5,13 +5,14 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
+  <h2>Welcome to Ionic PWA Qr Reader!</h2>
   <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
+    This starter project shiw how to create a Qr code scanner with Ionic that works on Android, iOS and as a PWA app.
   </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <h3>Current Platforms (Debug Info)</h3>
+  <ion-list>
+    <ion-item *ngFor="let item of currentPlaforms" no-lines detail-none>
+      {{item}}
+    </ion-item>
+  </ion-list>
 </ion-content>
